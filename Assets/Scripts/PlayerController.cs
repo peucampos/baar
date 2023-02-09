@@ -68,12 +68,17 @@ public class PlayerController : MonoBehaviour
     void InitDrag()
     {
         isDragActive = true;
+        if (lastDragged!= null)
+        {
+            lastDragged.PrepareArrow();
+        }
     }
 
     void Drag()
     {
         lastDragged.transform.position = new Vector2(fixedPosition, worldPosition.y);
-        
+        lastDragged.PullArrow();
+
         if (lastDragged.transform.position.y > lastDragged.bounds)
             lastDragged.transform.position = new Vector2(lastDragged.transform.position.x, lastDragged.bounds);
         if (lastDragged.transform.position.y < -lastDragged.bounds)
