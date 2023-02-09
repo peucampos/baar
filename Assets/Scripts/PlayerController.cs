@@ -1,34 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform fixedArrow;
-    public GameObject arrowPrefab;
-    public float speed = 5f;
+    private bool isDragActive = false;
+    private Vector2 screenPosition;
+    private Vector3 worldPosition;
+    private float fixedPosition = -8;
+    private Draggable lastDragged;
+    private float lastShot = 0;
+    public float shootCooldown = 1;
 
-    private float bounds = 4f;
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        PlayerController[] controllers = FindObjectsOfType<PlayerController>();
+        if (controllers.Length > 1 )
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //transform.Translate(speed * joystick.Vertical * Time.deltaTime * Vector2.up);
+        if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+        {
+            Drop();
+            return;
+        }
 
-        if (transform.position.y > bounds)
-            transform.position = new Vector2(transform.position.x, bounds);
-        if (transform.position.y < -bounds)
-            transform.position = new Vector2(transform.position.x, -bounds);
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            screenPosition = new Vector2(mousePos.x, mousePos.y);
+        }
+        else if (Input.touchCount > 0)
+        {
+            screenPosition = Input.GetTouch(0).position;
+        }
+        else
+            return;
+
+        worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+        if (isDragActive)
+        {
+            Drag();
+        }
+        else
+        {
+            RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+            if (hit.collider != null)
+            {
+                Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
+                if (draggable != null)
+                {
+                    lastDragged = draggable;
+                    InitDrag();
+                }
+            }
+        }
+
     }
 
-
-    public void ShootArrow()
+    void InitDrag()
     {
-        GameObject newArrow = Instantiate(arrowPrefab);
-        newArrow.transform.position = fixedArrow.position;
+        isDragActive = true;
+    }
+
+    void Drag()
+    {
+        lastDragged.transform.position = new Vector2(fixedPosition, worldPosition.y);
+        
+        if (lastDragged.transform.position.y > lastDragged.bounds)
+            lastDragged.transform.position = new Vector2(lastDragged.transform.position.x, lastDragged.bounds);
+        if (lastDragged.transform.position.y < -lastDragged.bounds)
+            lastDragged.transform.position = new Vector2(lastDragged.transform.position.x, -lastDragged.bounds);
+    }
+
+    void Drop()
+    {
+        if (Time.fixedTime - shootCooldown > lastShot)
+        {
+            lastDragged.ShootArrow();
+            lastShot = Time.fixedTime;
+        }
+        isDragActive = false;
     }
 }
