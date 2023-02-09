@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Joystick joystick;
     public Transform fixedArrow;
     public GameObject arrowPrefab;
     public float speed = 5f;
@@ -20,13 +17,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * joystick.Vertical * Time.deltaTime * Vector2.up);
+        //transform.Translate(speed * joystick.Vertical * Time.deltaTime * Vector2.up);
 
         if (transform.position.y > bounds)
             transform.position = new Vector2(transform.position.x, bounds);
         if (transform.position.y < -bounds)
             transform.position = new Vector2(transform.position.x, -bounds);
     }
+
 
     public void ShootArrow()
     {
