@@ -34,7 +34,8 @@ public class ArrowController : MonoBehaviour
     {
         ParticleSystem explosion = Instantiate(explosionPrefab);
         explosion.transform.position = transform.position;
-        explosion.startColor = Color.red;
+        var psMain = explosion.main;
+        psMain.startColor = Color.red;
         explosion.Play();
         Destroy(explosion.gameObject, 2f);
     }
