@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetFalling : MonoBehaviour
+public class BalloonController : MonoBehaviour
 {
     public float speed = 1f;
     public float fallDistance = 12f;
@@ -17,9 +17,9 @@ public class TargetFalling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < initialPosition.y - fallDistance)
+        if (transform.position.y > initialPosition.y + fallDistance)
             transform.position = initialPosition;
         else
-            transform.Translate(speed * Time.deltaTime * Vector2.down);
+            transform.Translate(speed * Time.deltaTime * Vector2.up);
     }
 }
