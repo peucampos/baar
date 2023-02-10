@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private float fixedPosition = -8;
     private Draggable lastDragged;
     private float lastShot = 0;
-    public float shootCooldown = 1;
+    private float shootCooldown = 1;
 
     void Awake()
     {

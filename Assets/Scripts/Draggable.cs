@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
-    public Transform fixedArrow;
+    private Vector2 fixedArrowPosition = new(-7.8f, 0.34f);
     private float fixedArrowOriginalPosX;
     public GameObject arrowPrefab;
     public float speed = 5f;
@@ -13,25 +14,24 @@ public class Draggable : MonoBehaviour
 
     private void Start()
     {
-        fixedArrowOriginalPosX = fixedArrow.position.x;
+        fixedArrowOriginalPosX = fixedArrowPosition.x;
     }
 
     internal void ShootArrow()
     {
         GameObject newArrow = Instantiate(arrowPrefab);
-        newArrow.transform.position = fixedArrow.position;
+        newArrow.transform.position = new Vector2(fixedArrowPosition.x, transform.position.y + fixedArrowPosition.y);
 
     }
 
     internal void PullArrow()
     {
-        if (fixedArrow.position.x > transform.position.x)
-            fixedArrow.Translate(Time.deltaTime * Vector2.left);
+        
     }
 
     internal void PrepareArrow()
     {
-        fixedArrow.position = new Vector2(fixedArrowOriginalPosX, transform.position.y);
+        
     }
 
 
