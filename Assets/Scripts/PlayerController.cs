@@ -12,17 +12,19 @@ public class PlayerController : MonoBehaviour
     private float fixedPosition = -8;
     private Draggable lastDragged;
     private float lastShot = 0;
-    private float shootCooldown = 1;
+    private float shootCooldown = 0.5f;
+
+    public Animator animator;
+    private const string ANIM_HOLDING = "isHolding";
 
     void Awake()
     {
         PlayerController[] controllers = FindObjectsOfType<PlayerController>();
-        if (controllers.Length > 1 )
+        if (controllers.Length > 1)
         {
             Destroy(gameObject);
         }
     }
-
     void Update()
     {
         if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
@@ -68,9 +70,10 @@ public class PlayerController : MonoBehaviour
     void InitDrag()
     {
         isDragActive = true;
-        if (lastDragged!= null)
+        if (lastDragged != null)
         {
             lastDragged.PrepareArrow();
+            animator.SetBool(ANIM_HOLDING, true);
         }
     }
 
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             lastDragged.ShootArrow();
             lastShot = Time.fixedTime;
+            animator.SetBool(ANIM_HOLDING, false);
         }
         isDragActive = false;
     }
