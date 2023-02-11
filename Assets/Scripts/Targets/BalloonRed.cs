@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BalloonController : MonoBehaviour
+public class BalloonRed : MonoBehaviour
 {
     public float speed = 1f;
     public float fallDistance = 12f;

@@ -1,21 +1,30 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    //Movement
     private bool isDragActive = false;
     private Vector2 screenPosition;
     private Vector3 worldPosition;
     private float fixedPosition = -8;
     private Draggable lastDragged;
+
+    //Shooting
     private float lastShot = 0;
     private float shootCooldown = 0.5f;
-
     public Animator animator;
     private const string ANIM_HOLDING = "isHolding";
+
+    //Game
+    private LevelController currentLevel;
+    public TMP_Text txtArrowCount;
+    public GameObject objGameOver;
+    public GameObject objVictory;
+    private int arrowCount = 15;
 
     void Awake()
     {
@@ -25,46 +34,62 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        currentLevel = GetComponent<LevelController>();
+    }
+
     void Update()
     {
-        if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+        if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
         {
-            Drop();
-            return;
+            currentLevel.Victory(objVictory);
         }
-
-        if (Input.GetMouseButton(0))
+        else if (arrowCount == 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
         {
-            Vector3 mousePos = Input.mousePosition;
-            screenPosition = new Vector2(mousePos.x, mousePos.y);
-        }
-        else if (Input.touchCount > 0)
-        {
-            screenPosition = Input.GetTouch(0).position;
-        }
-        else
-            return;
-
-        worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-        if (isDragActive)
-        {
-            Drag();
+            currentLevel.GameOver(objGameOver);
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-            if (hit.collider != null)
+            if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
             {
-                Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
-                if (draggable != null)
+                Drop();
+                return;
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 mousePos = Input.mousePosition;
+                screenPosition = new Vector2(mousePos.x, mousePos.y);
+            }
+            else if (Input.touchCount > 0)
+            {
+                screenPosition = Input.GetTouch(0).position;
+            }
+            else
+                return;
+
+            worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+            if (isDragActive)
+            {
+                Drag();
+            }
+            else
+            {
+                RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+                if (hit.collider != null)
                 {
-                    lastDragged = draggable;
-                    InitDrag();
+                    Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
+                    if (draggable != null)
+                    {
+                        lastDragged = draggable;
+                        InitDrag();
+                    }
                 }
             }
         }
-
     }
 
     void InitDrag()
@@ -90,12 +115,19 @@ public class PlayerController : MonoBehaviour
 
     void Drop()
     {
-        if (Time.fixedTime - shootCooldown > lastShot)
+        if (arrowCount > 0 && Time.fixedTime - shootCooldown > lastShot)
         {
+            ConsumeArrow();
             lastDragged.ShootArrow();
             lastShot = Time.fixedTime;
             animator.SetBool(ANIM_HOLDING, false);
         }
         isDragActive = false;
+    }
+
+    private void ConsumeArrow()
+    {
+        arrowCount--;
+        txtArrowCount.text = arrowCount.ToString();
     }
 }

@@ -21,7 +21,9 @@ public class ArrowController : MonoBehaviour
         transform.Translate(Vector2.right * Time.deltaTime * arrowSpeed);
 
         if (transform.position.x > arrowEndX)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
