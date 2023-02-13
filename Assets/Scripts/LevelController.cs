@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
 
     public void ContinueBtn()
     {
-        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene(0);

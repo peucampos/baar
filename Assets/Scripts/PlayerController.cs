@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text txtArrowCount;
     public GameObject objGameOver;
     public GameObject objVictory;
-    private int arrowCount = 15;
+    public int arrowCount = 15;
 
     void Awake()
     {
