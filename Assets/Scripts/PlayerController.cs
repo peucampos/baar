@@ -42,53 +42,57 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
+        if (this.isActiveAndEnabled)
         {
-            currentLevel.Victory(objVictory);
-        }
-        else if (arrowCount == 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
-        {
-            currentLevel.GameOver(objGameOver);
-        }
-        else
-        {
-            if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+            if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
             {
-                Drop();
-                return;
+                currentLevel.Victory(objVictory);
             }
-
-            if (Input.GetMouseButton(0))
+            else if (arrowCount == 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
             {
-                Vector3 mousePos = Input.mousePosition;
-                screenPosition = new Vector2(mousePos.x, mousePos.y);
-            }
-            else if (Input.touchCount > 0)
-            {
-                screenPosition = Input.GetTouch(0).position;
-            }
-            else
-                return;
-
-            worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-            if (isDragActive)
-            {
-                Drag();
+                currentLevel.GameOver(objGameOver);
             }
             else
             {
-                RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-                if (hit.collider != null)
+                if (isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
                 {
-                    Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
-                    if (draggable != null)
+                    Drop();
+                    return;
+                }
+
+                if (Input.GetMouseButton(0))
+                {
+                    Vector3 mousePos = Input.mousePosition;
+                    screenPosition = new Vector2(mousePos.x, mousePos.y);
+                }
+                else if (Input.touchCount > 0)
+                {
+                    screenPosition = Input.GetTouch(0).position;
+                }
+                else
+                    return;
+
+                worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+                if (isDragActive)
+                {
+                    Drag();
+                }
+                else
+                {
+                    RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+                    if (hit.collider != null)
                     {
-                        lastDragged = draggable;
-                        InitDrag();
+                        Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
+                        if (draggable != null)
+                        {
+                            lastDragged = draggable;
+                            InitDrag();
+                        }
                     }
                 }
             }
+
         }
     }
 
