@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class BeginController : MonoBehaviour
 {
-    void Update()
+    public void ContinueBtn()
     {
-        if (Input.touchCount > 0 || Input.GetMouseButton(0))
-        {
-            SceneManager.LoadScene(1);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

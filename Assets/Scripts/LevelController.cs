@@ -6,21 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    public int currentLevel;
-    public bool isVictory = false;
     public bool isPause = false;
-
-    void Update()
-    {
-        if (isVictory && (Input.touchCount > 0 || Input.GetMouseButton(0)))
-        {
-            int nextLevel = currentLevel + 1;
-            if (SceneManager.GetSceneAt(nextLevel) != null)
-                SceneManager.LoadScene(nextLevel);
-            else
-                SceneManager.LoadScene(0);
-        }
-    }
 
     public void PauseBtn()
     {
@@ -28,10 +14,17 @@ public class LevelController : MonoBehaviour
         isPause = !isPause;
     }
 
+    public void ContinueBtn()
+    {
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            SceneManager.LoadScene(0);
+    }
+
     public void Victory(GameObject victory)
     {
         victory.SetActive(true);
-        isVictory = true;
     }
 
     public void GameOver(GameObject gameOver)
