@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     public TMP_Text txtArrowCount;
     public GameObject objGameOver;
     public GameObject objVictory;
-    public int arrowCount = 15;
+    public int arrowCount;
+    public int minimumArrows;
 
     void Awake()
     {
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentLevel = GetComponent<LevelController>();
+        arrowCount = LevelController.remainingArrows + minimumArrows;
+        txtArrowCount.text = arrowCount.ToString();
     }
 
     void Update()
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
             if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
             {
                 currentLevel.Victory(objVictory);
+                LevelController.remainingArrows = arrowCount;
             }
             else if (arrowCount == 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
             {

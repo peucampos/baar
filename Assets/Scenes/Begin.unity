@@ -717,9 +717,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome Adventurer!\r\n\r\nSo you think you can be the master of the bow
-    and arrow? \r\n\r\nTry to pop these balloons with the fewest arrows as fast as
-    possible!\r\n"
+  m_text: 'Welcome!
+
+    
+
+    Drag yourself and release to shoot.
+
+
+    Level
+    1 is nostalgic...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b942f34341418434fb6fad8d67bac644, type: 2}
   m_sharedMaterial: {fileID: -4753051751323530213, guid: b942f34341418434fb6fad8d67bac644, type: 2}
