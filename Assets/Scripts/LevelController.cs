@@ -9,12 +9,6 @@ public class LevelController : MonoBehaviour
     public bool isPause = false;
     public static int remainingArrows;
 
-    public void PauseBtn()
-    {
-        Time.timeScale = isPause ? 0 : 1;
-        isPause = !isPause;
-    }
-
     public void ContinueBtn()
     {
         if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
