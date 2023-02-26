@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour
 {
     public bool isPause = false;
     public static int remainingArrows;
+    public static int arrowCount;
 
     public void ContinueBtn()
     {

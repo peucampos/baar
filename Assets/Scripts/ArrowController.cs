@@ -9,6 +9,7 @@ public class ArrowController : MonoBehaviour
     private float arrowEndX = 15f;
     private float arrowSpeed = 3f;
     public ParticleSystem explosionPrefab;
+    public Vector3 explosionOffset = new Vector3(0f, 0.8f, 0f);
 
     // Start is called before the first frame update
     void Start()
@@ -28,16 +29,44 @@ public class ArrowController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ExplodeBalloon(collision.gameObject.transform);
-        Destroy(collision.gameObject.transform.parent.gameObject);
+        Color balloonColor = ApplyEffect(collision.gameObject);
+        ExplodeBalloon(collision.gameObject.transform, balloonColor);
+        Destroy(collision.gameObject);
     }
 
-    private void ExplodeBalloon(Transform transform)
+    private Color ApplyEffect(GameObject gameObject)
+    {
+        BalloonController balloon = gameObject.GetComponent<BalloonController>();
+
+        switch (balloon.color)
+        {
+            case BalloonController.enumColor.Red:
+                break;
+            case BalloonController.enumColor.Yellow:
+                LevelController.arrowCount--;
+                break;
+            case BalloonController.enumColor.Blue:
+                break;
+            case BalloonController.enumColor.Green:
+                LevelController.arrowCount += 2;
+                break;
+            case BalloonController.enumColor.Orange:
+                break;
+            case BalloonController.enumColor.Purple:
+                break;
+            default:
+                break;
+        }
+
+        return gameObject.GetComponent<SpriteRenderer>().color;
+    }
+
+    private void ExplodeBalloon(Transform transform, Color balloonColor)
     {
         ParticleSystem explosion = Instantiate(explosionPrefab);
-        explosion.transform.position = transform.position;
+        explosion.transform.position = transform.position + explosionOffset;
         var psMain = explosion.main;
-        psMain.startColor = Color.red;
+        psMain.startColor = balloonColor;
         explosion.Play();
         Destroy(explosion.gameObject, 2f);
     }

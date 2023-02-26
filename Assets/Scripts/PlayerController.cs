@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public TMP_Text txtArrowCount;
     public GameObject objGameOver;
     public GameObject objVictory;
-    public int arrowCount;
     public int minimumArrows;
 
     void Awake()
@@ -39,20 +38,21 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentLevel = GetComponent<LevelController>();
-        arrowCount = LevelController.remainingArrows + minimumArrows;
-        txtArrowCount.text = arrowCount.ToString();
+        LevelController.arrowCount = LevelController.remainingArrows + minimumArrows;        
     }
 
     void Update()
     {
+        txtArrowCount.text = LevelController.arrowCount.ToString();
+
         if (this.isActiveAndEnabled)
         {
             if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
             {
                 currentLevel.Victory(objVictory);
-                LevelController.remainingArrows = arrowCount;
+                LevelController.remainingArrows = LevelController.arrowCount;
             }
-            else if (arrowCount == 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
+            else if (LevelController.arrowCount <= 0 && GameObject.FindGameObjectsWithTag("Arrow").Length == 0)
             {
                 currentLevel.GameOver(objGameOver);
             }
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     void Drop()
     {
-        if (arrowCount > 0 && Time.fixedTime - shootCooldown > lastShot)
+        if (LevelController.arrowCount > 0 && Time.fixedTime - shootCooldown > lastShot)
         {
             ConsumeArrow();
             lastDragged.ShootArrow();
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     private void ConsumeArrow()
     {
-        arrowCount--;
-        txtArrowCount.text = arrowCount.ToString();
+        LevelController.arrowCount--;
+        txtArrowCount.text = LevelController.arrowCount.ToString();
     }
 }
