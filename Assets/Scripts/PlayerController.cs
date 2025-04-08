@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        PlayerController[] controllers = FindObjectsOfType<PlayerController>();
+        PlayerController[] controllers = FindObjectsByType<PlayerController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         if (controllers.Length > 1)
         {
             Destroy(gameObject);
