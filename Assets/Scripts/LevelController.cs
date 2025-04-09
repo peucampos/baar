@@ -59,13 +59,19 @@ public class LevelController : MonoBehaviour
     {
         string[] arrVictory = new string[]
         {
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is a mess...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " looks easy...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " zig zags...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is together...", 
+            // Trial 1
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is easy...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is less easy...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is the sea...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is a mess...",
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is a ball...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is up...",
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is down...",
             "Victory!\n\nLevel " + (buildIndex + 1) + " is lonely...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is pointing up...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " has three rounds...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is surrounded...", 
+            // Bonus
+            "Victory!\n\nLevel " + (buildIndex + 1) + " a BONUS!", 
+            // Trial 2
             "Victory!\n\nLevel " + (buildIndex + 1) + " has intruders...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is anoying...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + ", let it go...", 

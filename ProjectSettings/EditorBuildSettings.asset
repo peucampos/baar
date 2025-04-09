@@ -12,40 +12,49 @@ EditorBuildSettings:
     path: Assets/Scenes/01.Reds/01-RedsBasic.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
-    path: Assets/Scenes/01.Reds/02-RedsRandom.unity
-    guid: ff43f11750b5a2147ac5465d6b7ecbfb
+    path: Assets/Scenes/01.Reds/02-RedsEasy.unity
+    guid: e6e95449a5db8ed4ca7414e4fb6f656f
   - enabled: 1
-    path: Assets/Scenes/01.Reds/03-RedsEasy.unity
-    guid: eb96c7e568ceee94d81fa508cb4b3b35
+    path: Assets/Scenes/01.Reds/03-RedsLessEasy.unity
+    guid: dbca544cc4780824a9375b5876d70edb
   - enabled: 1
     path: Assets/Scenes/01.Reds/04-RedsZigZag.unity
     guid: d8b9835daf5caa94ebc794b12e6e3426
   - enabled: 1
-    path: Assets/Scenes/01.Reds/05-RedsTogether.unity
+    path: Assets/Scenes/01.Reds/05-RedsMess.unity
+    guid: ff43f11750b5a2147ac5465d6b7ecbfb
+  - enabled: 1
+    path: Assets/Scenes/01.Reds/06-RedsTogether.unity
     guid: 9d5f75d75222c0241b79a425dcec3071
   - enabled: 1
-    path: Assets/Scenes/01.Reds/07-RedsOneShot.unity
+    path: Assets/Scenes/01.Reds/07-RedsUp.unity
+    guid: aa2216e7a679d224fbafc42a0d86cdc3
+  - enabled: 1
+    path: Assets/Scenes/01.Reds/10-RedsFinal.unity
+    guid: eb96c7e568ceee94d81fa508cb4b3b35
+  - enabled: 1
+    path: Assets/Scenes/01.Reds/09-RedsOneShot.unity
     guid: 8ad7a5c6209559b40b3c699ae2748ab0
   - enabled: 1
-    path: Assets/Scenes/01.Reds/08-RedsArrowUp.unity
-    guid: aa2216e7a679d224fbafc42a0d86cdc3
+    path: Assets/Scenes/01.Reds/08-RedsNotEasy.unity
+    guid: 31fb121f99071e846b388b32c21e897e
   - enabled: 1
     path: Assets/Scenes/00.Bonus/01.Bonus.unity
     guid: f5f0322138348a545a7efe4f77a1ef61
   - enabled: 1
-    path: Assets/Scenes/02.AddSub/07-AddSubBasic.unity
+    path: Assets/Scenes/02.AddSub/01-AddSubBasic.unity
     guid: 8c707c4e111e94e44a2c94f250d9a58f
   - enabled: 1
-    path: Assets/Scenes/02.AddSub/08-AddSubAlternate.unity
+    path: Assets/Scenes/02.AddSub/02-AddSubAlternate.unity
     guid: e44bb7edbea66314c9c3c09e85c5ee11
   - enabled: 1
-    path: Assets/Scenes/02.AddSub/09-AddSubEasy.unity
+    path: Assets/Scenes/02.AddSub/03-AddSubEasy.unity
     guid: 6382342209415ba41816018b6dec938f
   - enabled: 1
-    path: Assets/Scenes/02.AddSub/10-AddSubMiddle.unity
+    path: Assets/Scenes/02.AddSub/04-AddSubMiddle.unity
     guid: 81d8cba8e4000134b89927f4eadc9bd2
   - enabled: 1
-    path: Assets/Scenes/02.AddSub/11-AddSubOneShot.unity
+    path: Assets/Scenes/02.AddSub/05-AddSubOneShot.unity
     guid: 49dae8e1d2294ee48a74b423b1fa75bb
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 8d60e1adb567b84418c72102c1b1ab20, type: 2}

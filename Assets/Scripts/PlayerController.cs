@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     //Game
     private LevelController currentLevel;
-    private GameObject objArcher;
     public TMP_Text txtArrowCount;
     public GameObject objGameOver;
     public GameObject objVictory;
