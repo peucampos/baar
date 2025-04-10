@@ -62,21 +62,21 @@ public class LevelController : MonoBehaviour
             // Trial 1
             "Victory!\n\nLevel " + (buildIndex + 1) + " is easy...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is less easy...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is down...",
             "Victory!\n\nLevel " + (buildIndex + 1) + " is the sea...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is a mess...",
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is a ball...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is up...",
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is down...",
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is lonely...", 
-            "Victory!\n\nLevel " + (buildIndex + 1) + " is surrounded...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is a ball...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is timed...", 
             // Bonus
-            "Victory!\n\nLevel " + (buildIndex + 1) + " a BONUS!", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " comes 3 times!", 
             // Trial 2
             "Victory!\n\nLevel " + (buildIndex + 1) + " has intruders...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is anoying...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + ", let it go...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " is calculated...", 
             "Victory!\n\nLevel " + (buildIndex + 1) + " has options...", 
+            "Victory!\n\nLevel " + (buildIndex + 1) + " is surrounded...",
             "Victory!\n\nLevel " + (buildIndex + 1) + " is not ready...", 
             
         };
