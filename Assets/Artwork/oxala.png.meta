@@ -150,8 +150,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
-  spritePackingTag: 
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      aimPop_0: 7807468012084886712
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
